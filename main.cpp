@@ -8,12 +8,12 @@ class BigDiceInt
 {
 private:
       string num;
-      //string res;
 
 public:
 
       BigDiceInt (int decInt)
       {
+            // string buffer that contains a sequence of characters
             stringstream ss;
             ss << decInt;
             string str = ss.str();
@@ -31,11 +31,9 @@ public:
       }
 
 
-
       BigDiceInt()
       {
             num = "                                         ";
-            //num = '';
       }
 
       BigDiceInt(string number)
@@ -48,20 +46,17 @@ public:
             reverse(num.begin() , num.end());
       }
 
-      ///
-       ///
-        ///
+
       BigDiceInt operator+(BigDiceInt& obj)
       {
             BigDiceInt result;
 
             if(num[num.size()-1] == '-' && obj.num[obj.num.size()-1] != '-') /// /////////////////
             {
-                  cout << "*****" << endl;
                   // Calculate lengths of both string
                   int n1 = num.length()-1 , n2 = obj.num.length();
 
-                  ///ensure that num1 is biger than num2
+                  ///ensure that num1 is always bigger than num2
                   int ss=1;  /// using in adding '-'
                   if(n2 > n1)
                         {swap(obj.num ,num);
@@ -70,7 +65,7 @@ public:
                          }
                   else if(n2 == n1)
                         for (int i=0; i<n1; i++)
-                            if (num[i] < obj.num[i])
+                            if (num[i] < obj.num[i]) // number itself in case size1=size2
                                 {swap(obj.num ,num);
                                   swap(n1 ,n2);
                                   ss = 0;
@@ -144,7 +139,6 @@ public:
 
                         else if(num[num.size()-1] != '-' && obj.num[obj.num.size()-1] == '-')  /// /////////////////
                         {
-                            cout << "#####" << endl;
 
                               /// Calculate lengths of both string
                               int n1 = num.length() , n2 = obj.num.length()-1;
@@ -230,7 +224,6 @@ public:
 
                         else if(num[num.size()-1] == '-' && obj.num[obj.num.size()-1] == '-')  /// /////////////////
                         {
-                              cout << "/**<*/\n";
 
                               if(num.length() < obj.num.length()) ///num1 > num2
                                     swap(num , obj.num);
@@ -262,7 +255,6 @@ public:
 
                         else{
 
-                              cout << "&&&\n";
                               if(num.length() < obj.num.length()) ///num1 > num2
                                     swap(num , obj.num);
 
@@ -309,29 +301,40 @@ ostream& operator << (ostream& out, BigDiceInt &obj)
 
 int main()
 {
+      BigDiceInt result;
+      string res = "";
+      string num1;
+      string num2;
+      while(true){
+            cout << "Welcome to FCI Calculator\n";
+            cout << "----------------------------------------\n";
+            cout << "1- Perform Addition\n";
+            cout << "2- Exit\n";
 
-      BigDiceInt b1("1230000000000000001");
-      BigDiceInt b2("-30000000000000001");
-      BigDiceInt b3;
-      b1.rev();
-      b2.rev();
-      /**<  */
-      cout << "Welcome to FCI Calculator\n";
-      cout << "----------------------------------------\n";
-      cout << "1- Perform Addition\n";
-      cout << "2- Perform Subtraction\n";
-      cout << "3- Exit\n";
+            int count = 0;
+            cout << "Enter UR Choice:";
+            cin >> count;
+            if(count == 1){
+                  cout << "Number1 = ";
+                  cin >> num1;
+                  BigDiceInt number1(num1);
+                  cout << "Number2 = ";
+                  cin >> num2;
+                  BigDiceInt number2(num2);
 
-      int count = 0;
-      cout << "Enter UR Choice:";
-      cin >> count;
-      if(count == 1 || count == 2)
-            b3 = b1 + b2;
-      else
-            return 0;
+                  number1.rev();
+                  number2.rev();
 
-      cout << "num2 + num1 = " << b3 << endl;
-      cout << endl;
+                  result = number1 + number2;
+                  for(int i=0 ; i<result.size() ; i++){
+                        if(result[i] != ' ')
+                              res += result[i];
+                  }
+                  cout << "number1 + number2 = " << res << endl;
+            }
+            else
+                  return 0;
+      }
 
     return 0;
 }
