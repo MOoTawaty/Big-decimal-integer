@@ -51,7 +51,7 @@ public:
       {
             BigDiceInt result;
 
-            if(num[num.size()-1] == '-' && obj.num[obj.num.size()-1] != '-') /// /////////////////
+            if(num[num.size()-1] == '-' && obj.num[obj.num.size()-1] != '-')
             {
                   // Calculate lengths of both string
                   int n1 = num.length()-1 , n2 = obj.num.length();
@@ -131,7 +131,6 @@ public:
 
                       // reverse resultant string
                       reverse(result.num.begin(), result.num.end());
-                      return result;
                       }
 
 
@@ -217,7 +216,6 @@ public:
 
                                   // reverse resultant string
                                   reverse(result.num.begin(), result.num.end());
-                                  return result;
                         }
 
 
@@ -250,7 +248,6 @@ public:
 
                             reverse(result.num.begin() , result.num.end());
 
-                            return result;
                         }
 
                         else{
@@ -278,10 +275,8 @@ public:
 
                             reverse(result.num.begin() , result.num.end());
 
-                            return result;
-
                              }
-
+                             return result;
                   }
 
 
@@ -326,11 +321,7 @@ int main()
                   number2.rev();
 
                   result = number1 + number2;
-                  for(int i=0 ; i<result.size() ; i++){
-                        if(result[i] != ' ')
-                              res += result[i];
-                  }
-                  cout << "number1 + number2 = " << res << endl;
+                  cout << "number1 + number2 = " << result << endl;
             }
             else
                   return 0;
